@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Forensics Tool</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Photo Forensics Tool</h1>
+    <div class="controls">
+      <button id="select-btn">Select Picture</button>
+      <button id="clear-btn" class="secondary">Clear</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="panel-header">Image Preview</div>
+      <div class="image-container" id="image-container">
+        <div class="placeholder">No image selected</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">Metadata</div>
+      <div class="metadata-content" id="metadata-content">
+        Select an image to view its metadata.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const selectBtn = document.getElementById('select-btn');
+    const clearBtn = document.getElementById('clear-btn');
+    const imageContainer = document.getElementById('image-container');
+    const metadataContent = document.getElementById('metadata-content');
+
+    async function loadImage(filePath) {
+      if (!filePath) return;
+
+      const img = document.createElement('img');
+      img.src = `file://${filePath}`;
+      imageContainer.innerHTML = '';
+      imageContainer.appendChild(img);
+
+      metadataContent.innerHTML = '<p>Loading metadata...</p>';
+      const result = await window.electronAPI.extractMetadata(filePath);
+
+      if (!result.success) {
+        metadataContent.innerHTML = `<p class="error">Error: ${result.error}</p>`;
+        return;
+      }
+
+      let html = '';
+      for (const [sectionName, fields] of Object.entries(result.metadata)) {
+        const title = sectionName.charAt(0).toUpperCase() + sectionName.slice(1).replace(/([A-Z])/g, ' $1');
+        html += `<div class="section"><h3>${title}</h3>`;
+        for (const [label, value] of Object.entries(fields)) {
+          html += `<div class="field">
+            <span class="label">${label}</span>
+            <span class="value">${value}</span>
+          </div>`;
+        }
+        html += '</div>';
+      }
+      metadataContent.innerHTML = html;
+    }
+
+    function clearAll() {
+      imageContainer.innerHTML = '<div class="placeholder">No image selected</div>';
+      metadataContent.innerHTML = 'Select an image to view its metadata.';
+    }
+
+    // Button clicks
+    selectBtn.addEventListener('click', async () => {
+      const filePath = await window.electronAPI.selectFile();
+      await loadImage(filePath);
+    });
+
+    clearBtn.addEventListener('click', clearAll);
+
+    // Menu shortcuts
+    window.electronAPI.onMenuOpenFile(async () => {
+      const filePath = await window.electronAPI.selectFile();
+      await loadImage(filePath);
+    });
+
+    window.electronAPI.onMenuClear(clearAll);
+  </script>
+</body>
+</html>

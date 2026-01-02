@@ -1,0 +1,157 @@
+/*************  ✨ Windsurf Command ⭐  *************/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+# comment out relevant sections
+node_modules
+jspm_packages
+
+# Optional npm cache
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Testing
+coverage
+
+# Production
+build
+dist
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# macOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# files
+Thumbs.db
+ehthumbs.db
+Thumbs.db:36864
+Desktop.ini
+
+# KDE directory preferences
+.kde/share/config/kdeglobals
+.kde/share/config/khotkeys
+.kde/share/config/klaunchercache
+
+# Sublime Text project files
+*.sublime-project
+*.sublime-workspace
+
+# Sublime Text cache files
+*.sublime-session
+Session?.sublime_session
+AutoSaveSession?.sublime_session
+Workspace?.sublime_session
+*.sublime-projects-cache
+*.sublime-workspace-cache
+
+# Microsoft Office temporary files
+~$*
+
+# temporary LaTeX files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fmt
+*.fls
+*.swp
+*.bbl
+*.blg
+*.brf
+*.xpi
+*.run.xml
+*.dvi
+*.ps
+*.eps
+*.pdfsync
+
+# temporary Python files
+*.py[co]
+
+# temporary Django files
+__pycache__/
+
+# temporary Java files
+*.class
+
+# other
+.Spotlight-V100
+Trashes
+ehthumbs
+FilesSync
+Oracle_Java_Usage
+.TMP_*
+.Skus
+Temporary Items Past
+TemporaryItems
+*.tmp
+*.temp
+*.swp
+*.swo
+*.obj
+*.o
+*.res
+*.dbg
+*.pdb
+*.userprefs
+*.usettings
+*.sublime_session
+*.vs
+*.suo
+*.su
+*.ipch
+*.apk
+*.ap_
+*.dex
+*.odex
+*.jar
+*.class
+*.cache
+*.cache.base
+*.cache.data
+*.cache.metadata
+*.cache.lock
+*.cache.log
+*localstore.xml
+Microsoft_Visual_Studio
+Temporary Generated File_*
+*.ncb
+*.tlh
+*.tlb
+*.tli
+*.tlog
+*.tli
+*.tlh
+*.db
+/*******  d8a8978d-f804-4826-8aa9-06ae4e194174  *******/
